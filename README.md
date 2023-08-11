@@ -2,7 +2,7 @@
 
 ### Usage
 
-usage: ranges <min> <max> <number_of_ranges> <file>
+usage: ranges \<min\> \<max\> <number_of_ranges> \<file\>
 
 min: lower limit of total
 max: upper limit of total
