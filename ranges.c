@@ -33,7 +33,7 @@ char *read_file(char *filePath) {
       strcat(result, chToStr);
     }
   }
-  result[sz] = '\0';
+  result[sz + 1] = '\0';
   fclose(ptr);
   return result;
 }
