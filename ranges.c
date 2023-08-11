@@ -12,8 +12,6 @@ char *read_file(char *filePath) {
   FILE *ptr;
   char ch;
   char chToStr[2];
-  char *result = calloc(6000, sizeof(char));
-
   chToStr[1] = '\0';
 
   ptr = fopen(filePath, "r");
@@ -21,12 +19,21 @@ char *read_file(char *filePath) {
   if (NULL == ptr)
     return NULL;
 
+  fseek(ptr, 0L, SEEK_END);
+  int sz = ftell(ptr);
+  rewind(ptr);
+
+  char *result = calloc(sz, sizeof(char));
+
   strcat(result, "%s");
   while (!feof(ptr)) {
     ch = fgetc(ptr);
-    chToStr[0] = ch;
-    strcat(result, chToStr);
+    if ('\0' != ch) {
+      chToStr[0] = ch;
+      strcat(result, chToStr);
+    }
   }
+  result[sz] = '\0';
   fclose(ptr);
   return result;
 }
